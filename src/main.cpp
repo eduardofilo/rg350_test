@@ -490,7 +490,7 @@ static void* readdisks_thd(void* p)
 unsigned short is_batterycharging()
 {
 	FILE *usbdev = NULL;
-	usbdev = fopen("/sys/class/power_supply/usb/online", "r");
+	usbdev = fopen("/sys/class/power_supply/usb-charger/online", "r");
 	if(usbdev)
 	{
 		int usbval = 0;
@@ -518,7 +518,7 @@ unsigned short get_batterylevel()
     lastChecking=SDL_GetTicks();
 
     FILE *batteryHandle = NULL;
-    batteryHandle = fopen("/sys/class/power_supply/battery/voltage_now", "r");
+    batteryHandle = fopen("/sys/class/power_supply/jz-battery/voltage_now", "r");
     if (batteryHandle) {
       /* voltaje maximo de la RG es 4320000 */
 #define MAX_VOLTAGE 4200000
@@ -580,7 +580,7 @@ void get_cpuclock()
 {
 	FILE *cpuclockinfo=NULL;
 
-	cpuclockinfo = fopen("/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_cur_freq", "r");
+	cpuclockinfo = fopen("/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq", "r");
 	if(cpuclockinfo)
 	{
 		fscanf(cpuclockinfo,"%d",&cpu_clock_value);
